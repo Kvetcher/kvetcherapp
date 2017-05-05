@@ -1,6 +1,7 @@
 import { StackNavigator, TabNavigator } from 'react-navigation';
 import React, { Component } from 'react';
 import FirebaseTest from './FirebaseTest'
+import Location from './Location'
 
 import {
     AppRegistry,
@@ -26,6 +27,9 @@ const Tabs = TabNavigator({
     },
     FirebaseTest: {
         screen: FirebaseTest
+    },
+    LocationTest: {
+        screen: Location
     },
 });
 
