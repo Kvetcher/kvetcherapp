@@ -20,28 +20,32 @@ exports.examples = [
 export default class Location extends React.Component {
     state = {
         initialPosition: 'unknown',
-        lastPosition: 'unknown',
+        currentPosition: 'unknown',
+        initialLat:'unknown',
+        initialLong:'unknown',
+        currentLat:'unknown',
+        currentLong:'unknown'
     };
     watchID: ?number = null;
     componentDidMount() {
         navigator.geolocation.getCurrentPosition(
             (position) => {
                 var initialPosition = JSON.stringify(position);
-                this.setState({initialPosition});
+                this.setState({initialPosition, initialLat: position.coords.latitude, initialLong: position.coords.longitude});
             },
             (error) => alert(JSON.stringify(error)),
             {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
         );
         this.watchID = navigator.geolocation.watchPosition((position) => {
-            var lastPosition = JSON.stringify(position);
-            // var parseLastPosition = JSON.parse(lastPosition);
-            this.setState({lastPosition});
+            var currentPosition = JSON.stringify(position);
+            this.setState({currentPosition, currentLat: position.coords.latitude, currentLong: position.coords.longitude});
         });
     }
     componentWillUnmount() {
         navigator.geolocation.clearWatch(this.watchID);
     }
     render() {
+      console.log(this.state.currentLat)
         return (
             <View>
                 <Text>
@@ -49,12 +53,12 @@ export default class Location extends React.Component {
                     {this.state.initialPosition}
                 </Text>
                 <Text>
-                    <Text style={styles.title}>Current position: </Text>
-                    {this.state.lastPosition}
+                    <Text style={styles.title}>Current Latitude: </Text>
+                    {this.state.currentLat}
                 </Text>
                 <Text>
-                    <Text style={styles.title}>Current position: </Text>
-                    {this.state.lastPosition}
+                    <Text style={styles.title}>Current Longitude: </Text>
+                    {this.state.currentLong}
                 </Text>
             </View>
         );

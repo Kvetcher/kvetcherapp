@@ -12,9 +12,7 @@ import * as firebase from 'firebase';
 export default class kvetcher extends Component {
     render() {
         return (
-            <Provider>
-                <Nav />
-            </Provider>
+            <Nav />
         );
     }
 }
