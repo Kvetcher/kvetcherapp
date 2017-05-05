@@ -2,6 +2,7 @@ import { StackNavigator, TabNavigator } from 'react-navigation';
 import React, { Component } from 'react';
 import FirebaseTest from './FirebaseTest'
 import Location from './Location'
+import MapComp from './Map'
 
 import {
     AppRegistry,
@@ -23,7 +24,7 @@ const FakeComponent = () => {
 
 const Tabs = TabNavigator({
     MapTest: {
-        screen: FakeComponent
+        screen: MapComp
     },
     FirebaseTest: {
         screen: FirebaseTest
